@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row" >
+
+					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-5" >
+						<div class="post-entry">
+							<a href="#" class="post-thumbnail"><img src="{{product.image.url}}" width="90%" height="250px"></a>
+							<div class="name">
+								<h2 class="text-center">{{product.name}}</h2>
+								<p class="text-center">{{product.description}}</p>
+								<p class="text-center">stock:{{product.stock}}</p>
+
+								{% if user.is_superuser == True %}
+								  {% if product.stock > 0 %}
+								<h4>Product In stock</h4>
+								<a href="{% url 'shop:addstock' product.id %}" class="btn btn-secondary fw-bold mt-3 mb-2 text-center">Add Stock</a>
+								{% else %}
+								  <h4>Product Out Off Stock </h4>
+								<a href="{% url 'shop:addstock' product.id %}" class="btn btn-secondary fw-bold mt-3 mb-2 text-center">Add Stock</a>
+								{% endif %}
+
+								{% else %}
+								{% if product.stock > 0 %}
+								<a href="{% url 'cart:addtocart' product.id %}" class="btn btn-primary">ADD TO CART</a>
+								{% else %}
+								<h4>Out Of Stock</h4>
+								{% endif %}
+								{% endif %}
+
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+</div>
+
+
+
+{% endblock %}

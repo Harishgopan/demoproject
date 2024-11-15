@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<img src="{{cat.image.url}}" class="rounded mx-auto d-block mt-5">
+<h2 class="text-center">{{cat.name}}</h2>
+<p class="text-center">{{cat.description}}</p>
+
+<div class="row">
+			{% for i in product %}
+					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-5">
+						<div class="post-entry">
+							<a href="#" class="post-thumbnail"><img src="{{i.image.url}}" width="90%" height="250px"></a>
+							<div class="name">
+								<h2 class="text-center">{{i.name}}</h2>
+								<div class="button">
+								<a href="{% url 'shop:details' i.id %}" class="btn btn-primary">VIEW PRODUCT</a>
+
+
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
